@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace YuriiZh\CustomerStatus\Controller\Customer;
 
 use Magento\Customer\Model\ResourceModel\Customer as CustomerResourceModel;
