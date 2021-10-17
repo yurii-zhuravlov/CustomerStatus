@@ -1,0 +1,52 @@
+<?php
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
+use YuriiZh\CustomerStatus\Block\Account\Status;
+
+/**
+ * @var Status $block
+ * @var Escaper $escaper
+ * @var SecureHtmlRenderer $secureRenderer
+ */
+$currentStatus = $block->getCurrentStatus();
+?>
+<div class="status-account">
+    <span id="please-wait" class="please-wait load indicator"
+          data-text="<?= $escaper->escapeHtml(__('This won\'t take long . . .')) ?>">
+        <span><?= $escaper->escapeHtml(__('This won\'t take long . . .')) ?></span>
+    </span>
+    <?= /* @noEscape */ $secureRenderer->renderTag(
+        'style',
+        [],
+        '#please-wait { display: none;}',
+        false
+    ) ?>
+    <form class="form form-status"
+          id="status-form"
+          action="<?= $escaper->escapeUrl($block->getUrl('*/*/*')) ?>"
+          method="post">
+        <fieldset class="fieldset">
+            <div class="field status required">
+                <label class="label" for="status-message">
+                    <span><?= $escaper->escapeHtml(__('Enter status message')) ?></span>
+                </label>
+                <div class="control">
+                    <input class="input-text" id="status-message" type="text"
+                           name="<?= /* @noEscape */ Status::CUSTOMER_STATUS_ATTRIBUTE_CODE ?>"
+                           value="<?= $currentStatus ? $escaper->escapeHtml($currentStatus) : '' ?>"/>
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action save-status primary"
+                        type="submit"
+                        value="<?= $escaper->escapeHtml(__('Save')) ?>">
+                    <span><?= $escaper->escapeHtml(__('Save')) ?></span>
+                </button>
+            </div>
+
+        </div>
+    </form>
+</div>

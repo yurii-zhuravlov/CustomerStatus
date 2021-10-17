@@ -1,0 +1,25 @@
+{
+    "name": "yuriizh/module-customer-status",
+    "type": "magento2-module",
+    "description": "Customer Status for Magento 2",
+    "authors": [
+        {
+            "name": "Yurii Zhuravlov",
+            "email": "yurii.zhuravl3v@gmail.com"
+        }
+    ],
+    "license": "OSL-3.0",
+    "require": {
+        "php": "~7.4.0",
+        "magento/framework": "103.0.*",
+        "magento/module-customer": "103.0.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "YuriiZh\\CustomerStatus\\": ""
+        }
+    }
+}

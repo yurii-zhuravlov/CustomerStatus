@@ -1,0 +1,16 @@
+<?php
+
+use Magento\Framework\Escaper;
+use YuriiZh\CustomerStatus\Block\Account\Customer;
+
+/**
+ * @var Customer $block
+ * @var Escaper $escaper
+ */
+?>
+<?php if ($block->customerLoggedIn() && !empty($block->getStatusMessage())): ?>
+    <li class="customer-status-header">
+        <span class="status-label"><?= $escaper->escapeHtml(__('Status')) ?>:</span>
+        <span class="status-message"><?= $escaper->escapeHtml($block->getStatusMessage()) ?></span>
+    </li>
+<?php endif; ?>
