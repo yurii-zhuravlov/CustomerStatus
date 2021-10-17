@@ -1,16 +1,28 @@
 <?php
 
 use Magento\Framework\Escaper;
-use YuriiZh\CustomerStatus\Block\Account\Customer;
+use Magento\Customer\Block\Account\Customer;
+use YuriiZh\CustomerStatus\Block\Account\Status;
+use YuriiZh\CustomerStatus\Controller\Ajax\GetStatus;
 
 /**
  * @var Customer $block
  * @var Escaper $escaper
  */
 ?>
-<?php if ($block->customerLoggedIn() && !empty($block->getStatusMessage())): ?>
-    <li class="customer-status-header">
+<?php if ($block->customerLoggedIn()): ?>
+    <li class="customer-status-header" style="display: none;">
         <span class="status-label"><?= $escaper->escapeHtml(__('Status')) ?>:</span>
-        <span class="status-message"><?= $escaper->escapeHtml($block->getStatusMessage()) ?></span>
+        <span class="status-message"></span>
     </li>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "YuriiZh_CustomerStatus/js/update-status": {
+                "url": "<?= $escaper->escapeUrl($block->getUrl(GetStatus::GET_STATUS_PATH)) ?>",
+                "status": "<?= /* @noEscape */ Status::CUSTOMER_STATUS_ATTRIBUTE_CODE ?>"
+            }
+        }
+    }
+    </script>
 <?php endif; ?>

@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="header.links">
-            <block class="YuriiZh\CustomerStatus\Block\Account\Customer" name="customer-status-header" before="customer"
+            <block class="Magento\Customer\Block\Account\Customer" name="customer-status-header" before="customer"
                    template="YuriiZh_CustomerStatus::html/header.phtml"/>
         </referenceBlock>
     </body>
